@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, Outlet, useLocation } from 'react-router-dom';
-import { Plane, Calculator, BookOpen, Wrench, Menu, X, Cpu } from 'lucide-react';
+import { Plane, Calculator, BookOpen, Wrench, Menu, X, Cpu, ShoppingCart, BrainCircuit, Activity } from 'lucide-react';
 import { cn } from '../utils/cn';
 
 const NavItem = ({ to, icon: Icon, label, active }) => (
@@ -24,7 +24,10 @@ const Layout = () => {
 
     const navItems = [
         { to: "/", icon: Plane, label: "Fundamentals" },
+        { to: "/engineering", icon: Activity, label: "Simulations" },
         { to: "/hardware", icon: Cpu, label: "Hardware" },
+        { to: "/ai", icon: BrainCircuit, label: "AI Mechanic" },
+        { to: "/market", icon: ShoppingCart, label: "Marketplace" },
         { to: "/tools", icon: Calculator, label: "Calculators" },
         { to: "/build", icon: Wrench, label: "Build Guide" },
         { to: "/code", icon: BookOpen, label: "Code Lab" },

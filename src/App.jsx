@@ -9,6 +9,9 @@ import CodeLab from './modules/codelab/CodeLab';
 import ThrustToWeightCalculator from './components/Calculators/ThrustToWeightCalculator';
 
 import Hardware from './modules/hardware/Hardware';
+import Marketplace from './modules/market/Marketplace';
+import VisualInspector from './modules/ai/VisualInspector';
+import ThrustDynamics from './modules/engineering/ThrustDynamics';
 
 function App() {
   return (
@@ -16,6 +19,9 @@ function App() {
       <Route path="/" element={<Layout />}>
         <Route index element={<ForcesOfFlight />} />
         <Route path="hardware" element={<Hardware />} />
+        <Route path="engineering" element={<ThrustDynamics />} />
+        <Route path="ai" element={<VisualInspector />} />
+        <Route path="market" element={<Marketplace />} />
         <Route path="tools" element={
           <div className="space-y-12">
             <FlightTimeCalculator />
