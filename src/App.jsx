@@ -8,8 +8,7 @@ import BuildWizard from './modules/build-guide/BuildWizard';
 import CodeLab from './modules/codelab/CodeLab';
 import ThrustToWeightCalculator from './components/Calculators/ThrustToWeightCalculator';
 
-// Placeholder components for routes not yet implemented
-const Hardware = () => <div className="text-center mt-20 text-slate-500">Hardware Module Coming Soon</div>;
+import Hardware from './modules/hardware/Hardware';
 
 function App() {
   return (
