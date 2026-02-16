@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import partsData from '../../data/parts_db.json';
 import CompareTool from './CompareTool';
-import { Search, Filter, Cpu, CheckCircle, AlertTriangle, Zap, Box, Tag, ShoppingBag, Info, Plus, BrainCircuit, Globe } from 'lucide-react';
+import { Search, Filter, Cpu, CheckCircle, AlertTriangle, Zap, Box, Tag, ShoppingBag, Info, Plus, BrainCircuit, Globe, Camera } from 'lucide-react';
 import { cn } from '../../utils/cn';
 
 const GlobalCatalog = () => {
@@ -11,6 +11,7 @@ const GlobalCatalog = () => {
     const [selectedPart, setSelectedPart] = useState(null);
     const [compareList, setCompareList] = useState([]);
     const [stockRequested, setStockRequested] = useState([]);
+    const [activeImageIndex, setActiveImageIndex] = useState(0);
 
     const categories = ['All', ...new Set(partsData.map(p => p.category))];
     const brands = ['All', ...new Set(partsData.map(p => p.brand))];
@@ -42,6 +43,11 @@ const GlobalCatalog = () => {
         setStockRequested(prev => [...prev, id]);
         // Mock API call to backend
         setTimeout(() => alert("Request sent to Iraqi suppliers! 🇮🇶"), 500);
+    };
+
+    const openDetail = (part) => {
+        setSelectedPart(part);
+        setActiveImageIndex(0);
     };
 
     return (
@@ -118,13 +124,13 @@ const GlobalCatalog = () => {
                 </div>
 
                 {/* Grid */}
-                <div className="flex-1 overflow-y-auto pr-2 pb-24">
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        {filteredParts.slice(0, 100).map(part => ( // Virtualize or limit render for perf
+                <div className="flex-1 overflow-y-auto pr-2 pb-24 h-full relative">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-[250px]">
+                        {filteredParts.slice(0, 50).map(part => ( // Limited render for stability
                             <div
                                 key={part.id}
-                                onClick={() => setSelectedPart(part)}
-                                className="bg-slate-900 border border-slate-800 rounded-xl p-4 cursor-pointer hover:border-indigo-500/50 transition-all hover:shadow-lg group relative"
+                                onClick={() => openDetail(part)}
+                                className="bg-slate-900 border border-slate-800 rounded-xl p-4 cursor-pointer hover:border-indigo-500/50 transition-all hover:shadow-lg group relative overflow-hidden flex flex-col"
                             >
                                 <div className="absolute top-4 left-4 z-10">
                                     <button
@@ -140,10 +146,24 @@ const GlobalCatalog = () => {
                                     </button>
                                 </div>
 
-                                <div className="h-40 bg-slate-800 rounded-lg mb-4 flex items-center justify-center relative overflow-hidden">
-                                    <Cpu size={48} className="text-slate-600 group-hover:text-indigo-500 transition-colors" />
+                                <div className="flex-1 bg-slate-800 rounded-lg mb-4 relative overflow-hidden group/image">
+                                    {/* Real Image Rendering */}
+                                    <img
+                                        src={part.image}
+                                        alt={part.name}
+                                        loading="lazy"
+                                        className="w-full h-full object-cover opacity-80 group-hover/image:opacity-100 group-hover/image:scale-110 transition-all duration-500"
+                                    />
+
+                                    {/* Real Photo Tag */}
+                                    {part.tags && part.tags.includes('Real Photo') && (
+                                        <div className="absolute bottom-2 left-2 bg-black/60 backdrop-blur-md text-white text-[10px] font-bold px-2 py-1 rounded-full flex items-center border border-white/10">
+                                            <Camera size={10} className="mr-1" /> Real Photo
+                                        </div>
+                                    )}
+
                                     <div className={cn(
-                                        "absolute top-2 right-2 text-[10px] font-bold px-2 py-1 rounded-full border",
+                                        "absolute top-2 right-2 text-[10px] font-bold px-2 py-1 rounded-full border backdrop-blur-md",
                                         part.availability_status === 'In Baghdad' ? "bg-green-500/20 text-green-400 border-green-500/20" :
                                             part.availability_status === 'In Erbil' ? "bg-yellow-500/20 text-yellow-400 border-yellow-500/20" :
                                                 "bg-red-500/20 text-red-400 border-red-500/20"
@@ -151,23 +171,25 @@ const GlobalCatalog = () => {
                                         {part.availability_status?.toUpperCase() || 'IMPORT'}
                                     </div>
                                 </div>
-                                <div className="space-y-2">
+                                <div className="space-y-2 shrink-0">
                                     <div className="flex justify-between items-start">
-                                        <div>
-                                            <div className="text-xs text-indigo-400 font-bold uppercase">{part.brand}</div>
+                                        <div className="min-w-0 pr-2">
+                                            <div className="text-xs text-indigo-400 font-bold uppercase truncate">{part.brand}</div>
                                             <h3 className="text-white font-bold truncate">{part.name}</h3>
                                         </div>
                                         {part.specs?.voltage && (
-                                            <span className="text-xs font-mono bg-slate-800 px-2 py-1 rounded text-slate-300">
+                                            <span className="shrink-0 text-xs font-mono bg-slate-800 px-2 py-1 rounded text-slate-300">
                                                 {part.specs.voltage}
                                             </span>
                                         )}
                                     </div>
-                                    <div className="flex flex-wrap gap-2">
+                                    <div className="flex flex-wrap gap-2 h-6 overflow-hidden">
                                         {part.tags && part.tags.map(tag => (
-                                            <span key={tag} className="text-[10px] bg-slate-800 text-slate-400 px-2 py-0.5 rounded">
-                                                {tag}
-                                            </span>
+                                            tag !== 'Real Photo' && (
+                                                <span key={tag} className="text-[10px] bg-slate-800 text-slate-400 px-2 py-0.5 rounded whitespace-nowrap">
+                                                    {tag}
+                                                </span>
+                                            )
                                         ))}
                                     </div>
                                 </div>
@@ -199,8 +221,38 @@ const GlobalCatalog = () => {
                         </div>
 
                         <div className="flex-1 overflow-y-auto p-6 space-y-8">
-                            <div className="aspect-video bg-slate-800 rounded-xl flex items-center justify-center border border-slate-700">
-                                <Cpu size={64} className="text-slate-600" />
+                            {/* Gallery View */}
+                            <div className="space-y-4">
+                                <div className="aspect-video bg-slate-800 rounded-xl overflow-hidden border border-slate-700 relative group">
+                                    <img
+                                        src={selectedPart.gallery && selectedPart.gallery.length > 0 ? (selectedPart.gallery[activeImageIndex] || selectedPart.image) : selectedPart.image}
+                                        alt="Main"
+                                        className="w-full h-full object-cover transition-transform duration-700 hover:scale-125 cursor-zoom-in"
+                                    />
+                                    {selectedPart.tags?.includes('Real Photo') && (
+                                        <div className="absolute top-2 left-2 bg-black/60 backdrop-blur text-white text-[10px] font-bold px-2 py-1 rounded flex items-center">
+                                            <CheckCircle size={10} className="text-green-500 mr-1" /> Verified Photo
+                                        </div>
+                                    )}
+                                </div>
+                                {selectedPart.gallery && selectedPart.gallery.length > 0 && (
+                                    <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-thin">
+                                        {[selectedPart.image, ...selectedPart.gallery].map((img, idx) => (
+                                            <button
+                                                key={idx}
+                                                onClick={() => setActiveImageIndex(idx - 1)}
+                                                className={cn(
+                                                    "w-16 h-16 rounded-lg overflow-hidden border-2 shrink-0 transition-all",
+                                                    (activeImageIndex === idx - 1)
+                                                        ? "border-indigo-500 opacity-100"
+                                                        : "border-transparent opacity-60 hover:opacity-100"
+                                                )}
+                                            >
+                                                <img src={img} alt={`View ${idx}`} className="w-full h-full object-cover" />
+                                            </button>
+                                        ))}
+                                    </div>
+                                )}
                             </div>
 
                             <div className="grid grid-cols-2 gap-4">
