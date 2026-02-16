@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link, Outlet, useLocation } from 'react-router-dom';
-import { Plane, Calculator, BookOpen, Wrench, Menu, X, Cpu, ShoppingCart, BrainCircuit, Activity, Folder, Award } from 'lucide-react';
+import { Plane, Calculator, BookOpen, Wrench, Menu, X, Cpu, ShoppingCart, BrainCircuit, Activity, Folder, Award, Search } from 'lucide-react';
 import { cn } from '../utils/cn';
+import WelcomeModal from './WelcomeModal';
 
 const NavItem = ({ to, icon: Icon, label, active }) => (
     <Link
@@ -18,6 +19,8 @@ const NavItem = ({ to, icon: Icon, label, active }) => (
     </Link>
 );
 
+
+
 const Layout = () => {
     const [isOpen, setIsOpen] = React.useState(true);
     const location = useLocation();
@@ -26,6 +29,7 @@ const Layout = () => {
         { to: "/", icon: Plane, label: "Fundamentals" },
         { to: "/engineering", icon: Activity, label: "Simulations" },
         { to: "/hardware", icon: Cpu, label: "Hardware" },
+        { to: "/catalog", icon: Search, label: "Parts Database" },
         { to: "/ai", icon: BrainCircuit, label: "AI Mechanic" },
         { to: "/market", icon: ShoppingCart, label: "Marketplace" },
         { to: "/vault", icon: Folder, label: "Project Vault" },
@@ -37,6 +41,7 @@ const Layout = () => {
 
     return (
         <div className="flex h-screen bg-slate-950 text-slate-100 overflow-hidden font-sans selection:bg-indigo-500 selection:text-white">
+            <WelcomeModal />
             {/* Sidebar */}
             <aside
                 className={cn(

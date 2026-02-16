@@ -1,0 +1,381 @@
+[
+    {
+        "id": "motor_tm_f60v",
+        "category": "Motor",
+        "brand": "T-Motor",
+        "name": "F60 PRO V",
+        "specs": {
+            "kv": 1750,
+            "size": "2207",
+            "voltage": "6S",
+            "weight": "32g",
+            "shaft": "M5"
+        },
+        "compatibility": {
+            "prop_mount": "M5",
+            "esc_min_amp": 45
+        },
+        "iraq_availability": true,
+        "tags": [
+            "Cinematic",
+            "Freestyle",
+            "High-End"
+        ],
+        "image": "https://placehold.co/200?text=F60+PRO+V",
+        "description": "The gold standard for 5-inch freestyle. Smooth, powerful, and durable."
+    },
+    {
+        "id": "motor_sb_2306",
+        "category": "Motor",
+        "brand": "SpeedyBee",
+        "name": "2306 1950KV",
+        "specs": {
+            "kv": 1950,
+            "size": "2306",
+            "voltage": "6S",
+            "weight": "30g",
+            "shaft": "M5"
+        },
+        "compatibility": {
+            "prop_mount": "M5",
+            "esc_min_amp": 40
+        },
+        "iraq_availability": true,
+        "tags": [
+            "Budget",
+            "Freestyle"
+        ],
+        "image": "https://placehold.co/200?text=SpeedyBee+2306",
+        "description": "best bang for your buck motor for learning freestyle."
+    },
+    {
+        "id": "motor_bh_1504",
+        "category": "Motor",
+        "brand": "BrotherHobby",
+        "name": "VY 1504.5 3950KV",
+        "specs": {
+            "kv": 3950,
+            "size": "1504.5",
+            "voltage": "4S",
+            "weight": "12g",
+            "shaft": "1.5mm T-Mount"
+        },
+        "compatibility": {
+            "prop_mount": "T-Mount",
+            "esc_min_amp": 20
+        },
+        "iraq_availability": false,
+        "tags": [
+            "Micro",
+            "Ultralight"
+        ],
+        "image": "https://placehold.co/200?text=BH+1504",
+        "description": "Perfect for 3-inch sub-250g builds."
+    },
+    {
+        "id": "motor_xnova_2208",
+        "category": "Motor",
+        "brand": "XNova",
+        "name": "Cinematic X 2208 1350KV",
+        "specs": {
+            "kv": 1350,
+            "size": "2208",
+            "voltage": "6S",
+            "weight": "38g",
+            "shaft": "M5"
+        },
+        "compatibility": {
+            "prop_mount": "M5",
+            "esc_min_amp": 50
+        },
+        "iraq_availability": false,
+        "tags": [
+            "Cinematic",
+            "Long Range"
+        ],
+        "image": "https://placehold.co/200?text=XNova+2208",
+        "description": "Ultra smooth motors specifically designed for cinematic footage."
+    },
+    {
+        "id": "motor_iflight_xing2",
+        "category": "Motor",
+        "brand": "iFlight",
+        "name": "XING2 2207 1855KV",
+        "specs": {
+            "kv": 1855,
+            "size": "2207",
+            "voltage": "6S",
+            "weight": "31g",
+            "shaft": "M5"
+        },
+        "compatibility": {
+            "prop_mount": "M5",
+            "esc_min_amp": 45
+        },
+        "iraq_availability": true,
+        "tags": [
+            "Freestyle",
+            "Durable"
+        ],
+        "image": "https://placehold.co/200?text=XING2",
+        "description": "Known for the unibell design and extreme durability."
+    },
+    {
+        "id": "fc_sb_f405v3",
+        "category": "Flight Controller",
+        "brand": "SpeedyBee",
+        "name": "F405 V3 Stack",
+        "specs": {
+            "mcu": "STM32F405",
+            "gyro": "BMI270",
+            "uart_count": 5,
+            "input_voltage": "3-6S",
+            "mounting": "30x30",
+            "bluetooth": true
+        },
+        "compatibility": {
+            "mounting": "30x30",
+            "esc_protocol": "DShot600"
+        },
+        "iraq_availability": true,
+        "tags": [
+            "Bluetooth",
+            "Budget King"
+        ],
+        "image": "https://placehold.co/200?text=F405+V3",
+        "description": "The most popular stack in the world. Configurable via phone app."
+    },
+    {
+        "id": "fc_tm_f7",
+        "category": "Flight Controller",
+        "brand": "T-Motor",
+        "name": "F7 Pro Flight Controller",
+        "specs": {
+            "mcu": "STM32F722",
+            "gyro": "MPU6000",
+            "uart_count": 6,
+            "input_voltage": "3-8S",
+            "mounting": "30x30",
+            "bluetooth": true
+        },
+        "compatibility": {
+            "mounting": "30x30",
+            "esc_protocol": "DShot1200"
+        },
+        "iraq_availability": true,
+        "tags": [
+            "Premium",
+            "Reliable"
+        ],
+        "image": "https://placehold.co/200?text=Tm+F7",
+        "description": "High-end FC with built-in WiFi and Bluetooth."
+    },
+    {
+        "id": "fc_holybro_kakute",
+        "category": "Flight Controller",
+        "brand": "Holybro",
+        "name": "Kakute H7 V2",
+        "specs": {
+            "mcu": "STM32H743",
+            "gyro": "ICM42688",
+            "uart_count": 8,
+            "input_voltage": "2-8S",
+            "mounting": "30x30",
+            "bluetooth": false
+        },
+        "compatibility": {
+            "mounting": "30x30",
+            "esc_protocol": "DShot1200"
+        },
+        "iraq_availability": false,
+        "tags": [
+            "H7",
+            "Future Proof"
+        ],
+        "image": "https://placehold.co/200?text=Kakute+H7",
+        "description": "Powerful H7 processor for the most demanding filtering."
+    },
+    {
+        "id": "esc_tm_f55",
+        "category": "ESC",
+        "brand": "T-Motor",
+        "name": "F55A Pro II 4-in-1",
+        "specs": {
+            "current": "55A",
+            "burst": "75A",
+            "input_voltage": "3-6S",
+            "mounting": "30x30",
+            "firmware": "BLHeli_32"
+        },
+        "compatibility": {
+            "mounting": "30x30"
+        },
+        "iraq_availability": true,
+        "tags": [
+            "Reliable",
+            "High Current"
+        ],
+        "image": "https://placehold.co/200?text=F55A+Pro",
+        "description": "Bulletproof ESC for 6S freestyle rigs."
+    },
+    {
+        "id": "esc_skystars_ko45",
+        "category": "ESC",
+        "brand": "Skystars",
+        "name": "KO45 45A 4-in-1",
+        "specs": {
+            "current": "45A",
+            "burst": "60A",
+            "input_voltage": "3-6S",
+            "mounting": "30x30",
+            "firmware": "BLHeli_S"
+        },
+        "compatibility": {
+            "mounting": "30x30"
+        },
+        "iraq_availability": true,
+        "tags": [
+            "Budget",
+            "Solid"
+        ],
+        "image": "https://placehold.co/200?text=KO45",
+        "description": "Good value BLHeli_S ESC, flashable to Bluejay."
+    },
+    {
+        "id": "vtx_dji_o3",
+        "category": "Video Transmitter",
+        "brand": "DJI",
+        "name": "O3 Air Unit",
+        "specs": {
+            "resolution": "1080p/100fps",
+            "latency": "30ms",
+            "range": "10km+",
+            "voltage": "7.4-26.4V",
+            "recording": "4K/60fps"
+        },
+        "compatibility": {
+            "goggles": "DJI Goggles 2/Integra",
+            "mounting": "25.5x25.5"
+        },
+        "iraq_availability": true,
+        "tags": [
+            "HD",
+            "4K Recording"
+        ],
+        "image": "https://placehold.co/200?text=O3+Air+Unit",
+        "description": "The market leader for HD FPV. Stabilized 4K on board."
+    },
+    {
+        "id": "vtx_ws_avatar",
+        "category": "Video Transmitter",
+        "brand": "Walksnail",
+        "name": "Avatar HD Pro Kit",
+        "specs": {
+            "resolution": "1080p/60fps",
+            "latency": "22ms",
+            "range": "4km",
+            "voltage": "6-25V",
+            "recording": "1080p"
+        },
+        "compatibility": {
+            "goggles": "Walksnail/Dominator",
+            "mounting": "25.5x25.5"
+        },
+        "iraq_availability": true,
+        "tags": [
+            "HD",
+            "Night Vision"
+        ],
+        "image": "https://placehold.co/200?text=Avatar+HD",
+        "description": "Great low-light performance and 32GB internal storage."
+    },
+    {
+        "id": "vtx_rush_tank",
+        "category": "Video Transmitter",
+        "brand": "RushFPV",
+        "name": "Tank Solo",
+        "specs": {
+            "power": "1.6W",
+            "bands": "37",
+            "voltage": "7-36V",
+            "connector": "MMCX"
+        },
+        "compatibility": {
+            "goggles": "Analog",
+            "mounting": "30x30"
+        },
+        "iraq_availability": true,
+        "tags": [
+            "Analog",
+            "High Power"
+        ],
+        "image": "https://placehold.co/200?text=Rush+Tank",
+        "description": "Massive power for long range analog flights."
+    },
+    {
+        "id": "cam_caddx_ratel2",
+        "category": "Camera",
+        "brand": "Caddx",
+        "name": "Ratel 2",
+        "specs": {
+            "sensor": "1/1.8 Starlight",
+            "lens": "2.1mm",
+            "resolution": "1200TVL"
+        },
+        "compatibility": {
+            "type": "Analog",
+            "size": "Micro"
+        },
+        "iraq_availability": true,
+        "tags": [
+            "Analog",
+            "Night Day"
+        ],
+        "image": "https://placehold.co/200?text=Ratel+2",
+        "description": "Best in class analog camera for all lighting conditions."
+    },
+    {
+        "id": "frame_aos5",
+        "category": "Frame",
+        "brand": "AOS RC",
+        "name": "AOS 5 V5",
+        "specs": {
+            "size": "5 inch",
+            "geometry": "Squashed X",
+            "weight": "115g",
+            "material": "T700 Carbon"
+        },
+        "compatibility": {
+            "fc_mount": "20x20, 30x30, 25.5x25.5"
+        },
+        "iraq_availability": false,
+        "tags": [
+            "Resonance Tuned",
+            "Freestyle"
+        ],
+        "image": "https://placehold.co/200?text=AOS+5",
+        "description": "Scientifically designed to minimize vibration and resonance."
+    },
+    {
+        "id": "frame_apex",
+        "category": "Frame",
+        "brand": "ImpulseRC",
+        "name": "Apex Evo",
+        "specs": {
+            "size": "5 inch",
+            "geometry": "Compressed X",
+            "weight": "125g",
+            "material": "Carbon Fiber"
+        },
+        "compatibility": {
+            "fc_mount": "20x20, 30x30"
+        },
+        "iraq_availability": true,
+        "tags": [
+            "Indestructible",
+            "Classic"
+        ],
+        "image": "https://placehold.co/200?text=Apex+Evo",
+        "description": "The frame Mr. Steele uses. Known for extreme durability."
+    }
+]

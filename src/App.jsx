@@ -10,6 +10,7 @@ import ThrustToWeightCalculator from './components/Calculators/ThrustToWeightCal
 
 import Hardware from './modules/hardware/Hardware';
 import Marketplace from './modules/market/Marketplace';
+import GlobalCatalog from './modules/hardware/GlobalCatalog';
 import VisualInspector from './modules/ai/VisualInspector';
 import PidCopilot from './modules/ai/PidCopilot';
 import ThrustDynamics from './modules/engineering/ThrustDynamics';
@@ -23,6 +24,7 @@ function App() {
       <Route path="/" element={<Layout />}>
         <Route index element={<ForcesOfFlight />} />
         <Route path="hardware" element={<Hardware />} />
+        <Route path="catalog" element={<GlobalCatalog />} />
         <Route path="engineering" element={
           <div className="space-y-12">
             <ThrustDynamics />
