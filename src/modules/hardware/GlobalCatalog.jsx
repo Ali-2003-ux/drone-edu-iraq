@@ -1,7 +1,8 @@
 import React, { useState, useMemo } from 'react';
 import partsData from '../../data/parts_db.json';
 import CompareTool from './CompareTool';
-import { Search, Filter, Cpu, CheckCircle, AlertTriangle, Zap, Box, Tag, ShoppingBag, Info, Plus, BrainCircuit, Globe, Camera } from 'lucide-react';
+import TechNewsHub from './TechNewsHub';
+import { Search, Filter, Cpu, CheckCircle, AlertTriangle, Zap, Box, Tag, ShoppingBag, Info, Plus, BrainCircuit, Globe, Camera, MapPin } from 'lucide-react';
 import { cn } from '../../utils/cn';
 
 const GlobalCatalog = () => {
@@ -125,14 +126,14 @@ const GlobalCatalog = () => {
 
                 {/* Grid */}
                 <div className="flex-1 overflow-y-auto pr-2 pb-24 h-full relative">
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-[250px]">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-4 gap-6 auto-rows-[250px]">
                         {filteredParts.slice(0, 50).map(part => ( // Limited render for stability
                             <div
                                 key={part.id}
                                 onClick={() => openDetail(part)}
                                 className="bg-slate-900 border border-slate-800 rounded-xl p-4 cursor-pointer hover:border-indigo-500/50 transition-all hover:shadow-lg group relative overflow-hidden flex flex-col"
                             >
-                                <div className="absolute top-4 left-4 z-10">
+                                <div className="absolute top-4 left-4 z-10 flex gap-1">
                                     <button
                                         onClick={(e) => toggleCompare(e, part)}
                                         className={cn(
@@ -144,6 +145,15 @@ const GlobalCatalog = () => {
                                     >
                                         <Zap size={12} className="mr-1" /> Compare
                                     </button>
+                                    {(part.availability_status === 'In Baghdad' || part.availability_status === 'In Erbil') && (
+                                        <button
+                                            onClick={(e) => { e.stopPropagation(); alert("Mock: Opening Map to Al-Sina'a Street..."); }}
+                                            className="p-1.5 rounded-lg border bg-slate-950/50 border-slate-700 text-slate-400 opacity-0 group-hover:opacity-100 transition-all text-xs font-bold flex items-center"
+                                            title="View local stock location"
+                                        >
+                                            <MapPin size={12} className="mr-1" /> Local
+                                        </button>
+                                    )}
                                 </div>
 
                                 <div className="h-40 bg-slate-800 rounded-lg mb-4 flex items-center justify-center relative overflow-hidden group/image">
@@ -215,6 +225,9 @@ const GlobalCatalog = () => {
                 </div>
             </div>
 
+            {/* Right Sidebar: Tech News Hub */}
+            <TechNewsHub />
+
             {/* Compare Tool Dock */}
             {compareList.length > 0 && (
                 <CompareTool
@@ -230,8 +243,15 @@ const GlobalCatalog = () => {
                     <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setSelectedPart(null)}></div>
                     <div className="w-full max-w-md bg-slate-900 border-l border-slate-800 relative z-10 flex flex-col h-full animate-in slide-in-from-right-full duration-300">
                         <div className="p-6 border-b border-slate-800 flex justify-between items-start">
-                            <h2 className="text-2xl font-bold text-white">{selectedPart.name}</h2>
-                            <button onClick={() => setSelectedPart(null)} className="p-2 hover:bg-slate-800 rounded-full text-slate-400 hover:text-white">
+                            <div className="flex-1 mr-4">
+                                <h2 className="text-2xl font-bold text-white leading-tight">{selectedPart.name}</h2>
+                                {['In Baghdad', 'In Erbil'].includes(selectedPart.availability_status) && (
+                                    <div className="flex items-center text-emerald-400 text-xs font-bold mt-1 cursor-pointer hover:underline" onClick={() => alert("Mock: Opening Map to Al-Sina'a Street...")}>
+                                        <MapPin size={12} className="mr-1" /> Available in Al-Sina'a St.
+                                    </div>
+                                )}
+                            </div>
+                            <button onClick={() => setSelectedPart(null)} className="p-2 hover:bg-slate-800 rounded-full text-slate-400 hover:text-white shrink-0">
                                 <XCircleIcon />
                             </button>
                         </div>
@@ -264,7 +284,7 @@ const GlobalCatalog = () => {
                                                         : "border-transparent opacity-60 hover:opacity-100"
                                                 )}
                                             >
-                                                <img src={img} alt={`View ${idx}`} className="w-full h-full object-cover" />
+                                                <img src={img} alt={`View ${idx} `} className="w-full h-full object-cover" />
                                             </button>
                                         ))}
                                     </div>
