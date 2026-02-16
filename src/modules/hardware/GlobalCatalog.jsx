@@ -146,7 +146,7 @@ const GlobalCatalog = () => {
                                     </button>
                                 </div>
 
-                                <div className="flex-1 bg-slate-800 rounded-lg mb-4 relative overflow-hidden group/image">
+                                <div className="h-40 bg-slate-800 rounded-lg mb-4 flex items-center justify-center relative overflow-hidden group/image">
                                     {/* Real Image Rendering */}
                                     <div className="w-full h-full relative">
                                         <div className="absolute inset-0 bg-slate-800 animate-pulse" />
@@ -155,6 +155,10 @@ const GlobalCatalog = () => {
                                             alt={part.name}
                                             loading="lazy"
                                             onLoad={(e) => e.target.previousSibling.style.display = 'none'}
+                                            onError={(e) => {
+                                                e.target.onerror = null;
+                                                e.target.src = 'https://images.unsplash.com/photo-1591485423049-7a1b4fe7e32d?q=80&w=600&auto=format&fit=crop'; // Ultimate fallback
+                                            }}
                                             className="w-full h-full object-cover opacity-90 group-hover/image:opacity-100 group-hover/image:scale-110 transition-all duration-500 relative z-10"
                                         />
                                     </div>
