@@ -148,22 +148,26 @@ const GlobalCatalog = () => {
 
                                 <div className="flex-1 bg-slate-800 rounded-lg mb-4 relative overflow-hidden group/image">
                                     {/* Real Image Rendering */}
-                                    <img
-                                        src={part.image}
-                                        alt={part.name}
-                                        loading="lazy"
-                                        className="w-full h-full object-cover opacity-80 group-hover/image:opacity-100 group-hover/image:scale-110 transition-all duration-500"
-                                    />
+                                    <div className="w-full h-full relative">
+                                        <div className="absolute inset-0 bg-slate-800 animate-pulse" />
+                                        <img
+                                            src={part.image}
+                                            alt={part.name}
+                                            loading="lazy"
+                                            onLoad={(e) => e.target.previousSibling.style.display = 'none'}
+                                            className="w-full h-full object-cover opacity-90 group-hover/image:opacity-100 group-hover/image:scale-110 transition-all duration-500 relative z-10"
+                                        />
+                                    </div>
 
-                                    {/* Real Photo Tag */}
-                                    {part.tags && part.tags.includes('Real Photo') && (
-                                        <div className="absolute bottom-2 left-2 bg-black/60 backdrop-blur-md text-white text-[10px] font-bold px-2 py-1 rounded-full flex items-center border border-white/10">
-                                            <Camera size={10} className="mr-1" /> Real Photo
+                                    {/* Real Stock Photo Badge for Local Availability */}
+                                    {(part.availability_status === 'In Baghdad' || part.availability_status === 'In Erbil') && (
+                                        <div className="absolute bottom-2 left-2 z-20 bg-emerald-500/90 backdrop-blur-md text-white text-[9px] font-bold px-2 py-1 rounded-full flex items-center shadow-lg border border-emerald-400/30">
+                                            <Camera size={10} className="mr-1" /> Real Stock Photo
                                         </div>
                                     )}
 
                                     <div className={cn(
-                                        "absolute top-2 right-2 text-[10px] font-bold px-2 py-1 rounded-full border backdrop-blur-md",
+                                        "absolute top-2 right-2 z-20 text-[10px] font-bold px-2 py-1 rounded-full border backdrop-blur-md",
                                         part.availability_status === 'In Baghdad' ? "bg-green-500/20 text-green-400 border-green-500/20" :
                                             part.availability_status === 'In Erbil' ? "bg-yellow-500/20 text-yellow-400 border-yellow-500/20" :
                                                 "bg-red-500/20 text-red-400 border-red-500/20"
@@ -229,9 +233,9 @@ const GlobalCatalog = () => {
                                         alt="Main"
                                         className="w-full h-full object-cover transition-transform duration-700 hover:scale-125 cursor-zoom-in"
                                     />
-                                    {selectedPart.tags?.includes('Real Photo') && (
-                                        <div className="absolute top-2 left-2 bg-black/60 backdrop-blur text-white text-[10px] font-bold px-2 py-1 rounded flex items-center">
-                                            <CheckCircle size={10} className="text-green-500 mr-1" /> Verified Photo
+                                    {(selectedPart.availability_status === 'In Baghdad' || selectedPart.availability_status === 'In Erbil') && (
+                                        <div className="absolute top-2 left-2 bg-emerald-500/90 backdrop-blur text-white text-[10px] font-bold px-2 py-1 rounded flex items-center shadow-lg">
+                                            <CheckCircle size={10} className="text-white mr-1" /> Real Stock Photo
                                         </div>
                                     )}
                                 </div>
