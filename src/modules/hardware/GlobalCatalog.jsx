@@ -157,7 +157,15 @@ const GlobalCatalog = () => {
                                             onLoad={(e) => e.target.previousSibling.style.display = 'none'}
                                             onError={(e) => {
                                                 e.target.onerror = null;
-                                                e.target.src = 'https://images.unsplash.com/photo-1591485423049-7a1b4fe7e32d?q=80&w=600&auto=format&fit=crop'; // Ultimate fallback
+                                                // Category-Specific Fallback Engine
+                                                const fallbacks = {
+                                                    'Motor': 'https://images.unsplash.com/photo-1591485423049-7a1b4fe7e32d?q=80&w=600&auto=format&fit=crop',
+                                                    'Flight Controller': 'https://images.unsplash.com/photo-1605218427335-3a4dd8845219?q=80&w=600&auto=format&fit=crop',
+                                                    'ESC': 'https://images.unsplash.com/photo-1555664424-778a69fba372?q=80&w=600&auto=format&fit=crop',
+                                                    'Video Transmitter': 'https://images.unsplash.com/photo-1581092160562-40aa08e78837?q=80&w=600&auto=format&fit=crop',
+                                                    'Frame': 'https://images.unsplash.com/photo-1506947411487-a56738267384?q=80&w=600&auto=format&fit=crop'
+                                                };
+                                                e.target.src = fallbacks[part.category] || 'https://images.unsplash.com/photo-1473968512647-3e447244af8f?q=80&w=600&auto=format&fit=crop';
                                             }}
                                             className="w-full h-full object-cover opacity-90 group-hover/image:opacity-100 group-hover/image:scale-110 transition-all duration-500 relative z-10"
                                         />

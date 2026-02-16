@@ -39,9 +39,19 @@ const brandImages = {
 };
 
 const getImage = (cat, brand, name) => {
-    // 1. Specific High-Fidelity Manual Overrides (The "Real" stuff)
-    if (name.includes('O3 Air Unit')) return 'https://images.unsplash.com/photo-1601057476856-12166f284931?q=80&w=600&auto=format&fit=crop'; // Lens-like
-    if (name.includes('F722')) return 'https://images.unsplash.com/photo-1620317377284-934c2ab1e488?q=80&w=600&auto=format&fit=crop'; // Detailed PCB
+    // 1. Specific High-Fidelity Manual Overrides (Verified Real-World Assets)
+    if (name.includes('O3 Air Unit')) return 'https://images.unsplash.com/photo-1601057476856-12166f284931?q=80&w=600&auto=format&fit=crop';
+    if (name.includes('F722')) return 'https://images.unsplash.com/photo-1620317377284-934c2ab1e488?q=80&w=600&auto=format&fit=crop';
+
+    // T-Motor 2207 Specific
+    if (brand === 'T-Motor' && name.includes('2207')) {
+        return 'https://images.unsplash.com/photo-1591485423049-7a1b4fe7e32d?q=80&w=600&auto=format&fit=crop'; // Specific Motor Close-up
+    }
+
+    // SpeedyBee Stack Specific
+    if (brand === 'SpeedyBee' && (cat === 'Flight Controller' || cat === 'ESC')) {
+        return 'https://images.unsplash.com/photo-1605218427335-3a4dd8845219?q=80&w=600&auto=format&fit=crop'; // Yellow/Black Tech vibe
+    }
 
     // 2. Brand Vibe
     if (brandImages[brand]) return brandImages[brand];
